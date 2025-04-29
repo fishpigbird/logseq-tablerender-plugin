@@ -43,7 +43,7 @@ export const checkCell = async (
   if (processedContent.toLowerCase().startsWith('<iframe')) {
     // Assume it's a valid iframe, pass it through directly
     htmlOutput = processedContent;
-     // Early return if iframe is found
+     // Early return if iframe is found 
     return <div dangerouslySetInnerHTML={{ __html: htmlOutput }} />;
   }
 
