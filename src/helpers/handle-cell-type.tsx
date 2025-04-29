@@ -29,14 +29,15 @@ export const checkCell = async (
     const videoUrl = videoMatch[1].trim();
     const videoId = getYouTubeVideoId(videoUrl);
     if (videoId) {
-      // Generate YouTube embed iframe
-      htmlOutput = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      // Generate YouTube embed iframe using inline styles (16:9 ratio, height 215px)
+      htmlOutput = `<iframe style="width: 382px; height: 215px;" src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
     } else {
       // Fallback for non-YouTube videos or if ID extraction fails: show link
        htmlOutput = `<a href="${videoUrl}" target="_blank">${videoUrl}</a>`;
     }
     // Early return if video macro is processed
-    return <div dangerouslySetInnerHTML={{ __html: htmlOutput }} />;
+    const finalDiv: JSX.Element = <div dangerouslySetInnerHTML={{ __html: htmlOutput }} />;
+    return finalDiv;
   }
 
   // 2. Check for <iframe> tag
